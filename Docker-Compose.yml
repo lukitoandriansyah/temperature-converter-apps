@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  temperature-converter:
+    build:
+      context: .  # Menunjukkan direktori tempat Dockerfile berada
+      args:
+        APP_VERSION: v1.0 # Versi aplikasi di setting di sini
+      dockerfile: Dockerfile  # Nama file Dockerfile, jika tidak bernama 'Dockerfile', sesuaikan dengan nama yang digunakan
+    ports:
+      - "8071:8070"  # Pemetaan port dari host ke container
+    environment:
+      SPRING_PROFILES_ACTIVE: docker  # Contoh variabel lingkungan, jika aplikasi Spring Boot menggunakan profil
+    volumes:
+      - ./target:/app  # Opsional: Menghubungkan direktori target lokal ke /app di dalam container, jika perlu
